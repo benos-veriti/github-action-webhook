@@ -2,15 +2,6 @@ name: Triggered Workflow
 
 on:
   workflow_dispatch:
-    inputs:
-      param1:
-        description: 'Parameter 1'
-        required: true
-        default: 'Default Value'
-      param2:
-        description: 'Parameter 2'
-        required: false
-        default: 'Optional Value'
 
 jobs:
   triggered_job:
@@ -21,7 +12,4 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run triggered action
-        run: |
-          echo "Workflow triggered from Zapier!"
-          echo "Parameter 1: ${{ github.event.inputs.param1 }}"
-          echo "Parameter 2: ${{ github.event.inputs.param2 }}"
+        run: echo "Workflow triggered from Zapier!"
