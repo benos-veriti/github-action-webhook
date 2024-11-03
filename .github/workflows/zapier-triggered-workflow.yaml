@@ -2,6 +2,19 @@ name: Triggered Workflow
 
 on:
   workflow_dispatch:
+    inputs:
+      customer_name:
+        description: 'Name of the customer'
+        required: true
+        type: string
+      public_ips:
+        description: 'List of public IPs (comma-separated)'
+        required: true
+        type: string
+      partner_email:
+        description: 'Email of the partner'
+        required: true
+        type: string
 
 jobs:
   triggered_job:
@@ -12,4 +25,8 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run triggered action
-        run: echo "Workflow triggered from Zapier!"
+        run: |
+          echo "Workflow triggered from Zapier!"
+          echo "Customer Name: ${{ github.event.inputs.customer_name }}"
+          echo "Public IPs: ${{ github.event.inputs.public_ips }}"
+          echo "Partner Email: ${{ github.event.inputs.partner_email }}"
