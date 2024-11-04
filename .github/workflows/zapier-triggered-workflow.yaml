@@ -3,14 +3,26 @@ name: Triggered Workflow
 on:
   workflow_dispatch:
     inputs:
-      tenant_name:
-        description: "Tenant name"
+      customer_full_name:
+        description: "Customer full name"
         type: string
-        required: false
-      poc_date:
-        description: "POC Date: format should be yyyy-mm-dd, tenant will be provisioned once the poc date is in the upcoming 7 days"
+        required: true
+      email:
+        description: "Email"
         type: string
-        required: false
+        required: true
+      image_deployment_type:
+        description: "Customer image deployment type"
+        type: string
+        required: true
+      customer_public_facing_ips:
+        description: "Customer public facing IPs"
+        type: string
+        required: true
+      mssp_access:
+        description: "MSSP access"
+        type: string
+        required: true
 
 jobs:
   triggered_job:
@@ -23,5 +35,9 @@ jobs:
       - name: Run triggered action
         run: |
           echo "Workflow triggered from Zapier!"
-          echo "tenant_name: ${{ github.event.inputs.tenant_name }}"
-          echo "poc_date: ${{ github.event.inputs.poc_date }}"
+          echo "Customer Full Name: ${{ github.event.inputs.customer_full_name }}"
+          echo "Email: ${{ github.event.inputs.email }}"
+          echo "Image Deployment Type: ${{ github.event.inputs.image_deployment_type }}"
+          echo "Customer Public Facing IPs: ${{ github.event.inputs.customer_public_facing_ips }}"
+          echo "MSSP Access: ${{ github.event.inputs.mssp_access }}"
+
