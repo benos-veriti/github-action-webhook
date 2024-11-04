@@ -1,18 +1,13 @@
 name: Echo Time
 
 on:
-  repository_dispatch:
-    types: 
-      - trigger-echo-time
+  workflow_dispatch:
 
 jobs:
   echo_time_job:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
       - name: Echo formatted time
         run: |
           current_time=$(date +"%Y-%m-%d")
