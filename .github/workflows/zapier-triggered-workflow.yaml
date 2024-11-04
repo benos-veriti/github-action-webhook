@@ -23,5 +23,5 @@ jobs:
       - name: Run triggered action
         run: |
           echo "Workflow triggered from Zapier!"
-          echo "Customer Name: ${{ github.event.inputs.tenant_name }}"
-          echo "Public IPs: ${{ github.event.inputs.poc_date }}"
+          echo "tenant_name: ${{ github.event.inputs.tenant_name }}"
+          echo "poc_date: ${{ github.event.inputs.poc_date }}"
