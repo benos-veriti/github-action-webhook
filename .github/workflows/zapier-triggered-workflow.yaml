@@ -3,18 +3,14 @@ name: Triggered Workflow
 on:
   workflow_dispatch:
     inputs:
-      customer_name:
-        description: 'Name of the customer'
-        required: true
+      tenant_name:
+        description: "Tenant name"
         type: string
-      public_ips:
-        description: 'List of public IPs (comma-separated)'
-        required: true
+        required: false
+      poc_date:
+        description: "POC Date: format should be yyyy-mm-dd, tenant will be provisioned once the poc date is in the upcoming 7 days"
         type: string
-      partner_email:
-        description: 'Email of the partner'
-        required: true
-        type: string
+        required: false
 
 jobs:
   triggered_job:
@@ -27,6 +23,5 @@ jobs:
       - name: Run triggered action
         run: |
           echo "Workflow triggered from Zapier!"
-          echo "Customer Name: ${{ github.event.inputs.customer_name }}"
-          echo "Public IPs: ${{ github.event.inputs.public_ips }}"
-          echo "Partner Email: ${{ github.event.inputs.partner_email }}"
+          echo "Customer Name: ${{ github.event.inputs.tenant_name }}"
+          echo "Public IPs: ${{ github.event.inputs.poc_date }}"
