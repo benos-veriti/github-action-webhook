@@ -41,3 +41,20 @@ jobs:
           echo "Customer Public Facing IPs: ${{ github.event.inputs.customer_public_facing_ips }}"
           echo "MSSP Access: ${{ github.event.inputs.mssp_access }}"
 
+  echo_time_trigger:
+    runs-on: ubuntu-latest
+    needs: triggered_job  # Ensure this runs after the triggered_job
+    steps:
+      - name: Trigger Echo Time Workflow
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const workflow_id = 'echo-time.yaml';  // Name of the workflow file
+            const ref = 'main'; // Branch to run the workflow on
+            await github.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id,
+              ref,
+              inputs: {} // Pass any necessary inputs here if needed
+            });
