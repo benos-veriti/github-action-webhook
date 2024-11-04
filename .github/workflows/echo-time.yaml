@@ -1,7 +1,9 @@
 name: Echo Time
 
 on:
-  workflow_dispatch:
+  repository_dispatch:
+    types: 
+      - trigger-echo-time
 
 jobs:
   echo_time_job:

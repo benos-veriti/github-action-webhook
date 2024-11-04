@@ -45,16 +45,17 @@ jobs:
     runs-on: ubuntu-latest
     needs: triggered_job  # Ensure this runs after the triggered_job
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
       - name: Trigger Echo Time Workflow
         uses: actions/github-script@v6
         with:
           script: |
-            const workflow_id = 'echo-time.yaml';  // Name of the workflow file
-            const ref = 'main'; // Branch to run the workflow on
-            await github.actions.createWorkflowDispatch({
+            const dispatch = await github.rest.repos.createDispatchEvent({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_id,
-              ref,
-              inputs: {} // Pass any necessary inputs here if needed
+              event_type: 'trigger-echo-time', // Custom event type
+              client_payload: {} // Pass any necessary inputs here if needed
             });
+            console.log(dispatch);
