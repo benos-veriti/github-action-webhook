@@ -60,6 +60,6 @@ jobs:
                   "inputs": {
                     "manually_insert": "yes",
                     "tenant_name": "${{ github.event.inputs.customer_full_name }}",
-                    "poc_date": "2022-12-31",
+                    "poc_date": "2022-12-31"
                   }
                 }'
