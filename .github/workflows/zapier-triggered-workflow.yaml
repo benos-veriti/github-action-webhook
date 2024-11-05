@@ -58,7 +58,7 @@ jobs:
             -d '{
                   "ref": "main",
                   "inputs": {
-                    "manually_insert": "no",
+                    "manually_insert": no,
                     "tenant_name": "${{ github.event.inputs.customer_full_name }}",
                     "poc_date": "2022-12-31"
                   }
