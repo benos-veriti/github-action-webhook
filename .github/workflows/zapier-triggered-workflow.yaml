@@ -41,15 +41,9 @@ jobs:
           echo "Customer Public Facing IPs: ${{ github.event.inputs.customer_public_facing_ips }}"
           echo "MSSP Access: ${{ github.event.inputs.mssp_access }}"
 
-      - name: Calculate POC Date
-        id: poc_date
-        run: |
-          poc_date=$(date +"%Y-%m-%d")
-          echo "::set-output name=date::$poc_date"
-
   trigger_echo_time:
     runs-on: ubuntu-latest
-    needs: triggered_job
+    needs: triggered_job  # Ensure this runs after the triggered_job
 
     steps:
       - name: Checkout repository
@@ -64,8 +58,8 @@ jobs:
             -d '{
                   "ref": "main",
                   "inputs": {
-                    "manually_insert": "yes",  # Ensure this matches the allowed options
+                    "manually_insert": "yes",
                     "tenant_name": "${{ github.event.inputs.customer_full_name }}",
-                    "poc_date": "${{ needs.triggered_job.outputs.date }}"
+                    "poc_date": "2022-12-31",
                   }
                 }'
