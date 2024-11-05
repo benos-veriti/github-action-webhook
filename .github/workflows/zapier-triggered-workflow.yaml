@@ -64,7 +64,7 @@ jobs:
             -d '{
                   "ref": "main",
                   "inputs": {
-                    "manually_insert": "yes",
+                    "manually_insert": "no",  # Ensure this matches the allowed options
                     "tenant_name": "${{ github.event.inputs.customer_full_name }}",
                     "poc_date": "${{ needs.triggered_job.outputs.date }}"
                   }
