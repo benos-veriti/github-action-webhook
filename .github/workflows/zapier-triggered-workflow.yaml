@@ -51,7 +51,7 @@ jobs:
 
       - name: Trigger Echo Time Workflow
         run: |
-          curl -X POST \
+          response=$(curl -X POST \
             -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/benos-veriti/github-action-webhook/actions/workflows/echo-time.yaml/dispatches \
@@ -62,4 +62,6 @@ jobs:
                     "tenant_name": "${{ github.event.inputs.customer_full_name }}",
                     "poc_date": "2022-12-31"
                   }
-                }'
+                }')
+          echo "Response from Echo Time Workflow Trigger:"
+          echo "$response"
